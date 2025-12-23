@@ -13,7 +13,7 @@ import { db } from "./firebase";
 function App() {
   const [expenses, setExpenses] = useState([]);
 
-  // ✅ FETCH DATA FROM FIRESTORE
+  // FETCH DATA FROM FIRESTORE
   useEffect(() => {
     const fetchExpenses = async () => {
       const q = query(collection(db, "expenses"), orderBy("date", "desc"));
@@ -23,7 +23,7 @@ function App() {
       id: doc.id,
       title: doc.data().title,
       amount: doc.data().amount,
-      date: doc.data().date.toDate(), // ⭐ IMPORTANT
+      date: doc.data().date.toDate(), // IMPORTANT
     }));
 
 
@@ -33,7 +33,7 @@ function App() {
     fetchExpenses();
   }, []);
 
-  // ✅ ADD EXPENSE TO FIRESTORE
+  // ADD EXPENSE TO FIRESTORE
   const addExpenseHandler = async (expense) => {
     const docRef = await addDoc(collection(db, "expenses"), {
       title: expense.title,
